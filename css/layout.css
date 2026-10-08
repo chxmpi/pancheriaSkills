@@ -1,0 +1,233 @@
+/* ==========================================================================
+   layout.css — estructura de página: header, secciones, footer
+   Define el esqueleto y el ritmo vertical. No estiliza componentes internos.
+   ========================================================================== */
+
+/* --- Header sticky con filo de toldo ------------------------------------- */
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,246,236,.95);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+
+/* El toldo a rayas viaja pegado al header: es el filo de la carpa,
+   visible en todo scroll. */
+header::after{
+  content:"";
+  display:block;
+  height:10px;
+  background:var(--toldo);
+}
+
+.bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  height:var(--header-alto);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:var(--fuente-titulo);
+  font-size:1.55rem;
+  text-transform:uppercase;
+  line-height:1;
+}
+
+/* Chapa de colores del local */
+.logo span{
+  background:var(--naranja-texto);
+  color:#fff;
+  padding:4px 10px;
+  border-radius:var(--radio-chico);
+  font-family:var(--fuente-cuerpo);
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
+nav{display:flex;align-items:center;gap:20px}
+
+nav a{
+  font-weight:600;
+  font-size:.95rem;
+  color:var(--tinta-suave);
+  padding:6px 2px;
+  border-bottom:3px solid transparent;
+  transition:color .18s,border-color .18s;
+}
+
+nav a:hover{color:var(--tinta);border-bottom-color:var(--crema-oscuro)}
+
+/* Sección visible en pantalla (scrollspy, lo marca js/main.js) */
+nav a.activo{color:var(--naranja-texto);border-bottom-color:var(--naranja)}
+
+nav a.cta{
+  background:var(--naranja-texto);
+  color:#fff;
+  padding:10px 18px;
+  border-radius:var(--radio);
+  border-bottom:none;
+  box-shadow:4px 4px 0 var(--tinta);
+  transition:transform .15s,box-shadow .15s;
+}
+
+nav a.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--tinta);border-bottom:none}
+nav a.cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--tinta)}
+nav a.cta.activo{border-bottom:none;color:#fff}
+
+.burger{
+  display:none;
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:8px;
+  color:var(--tinta);
+}
+
+.burger-ico{width:26px;height:26px;fill:currentColor;display:block;transition:transform .2s}
+.burger[aria-expanded="true"] .burger-ico{transform:rotate(90deg)}
+
+/* --- Secciones ---------------------------------------------------------- */
+section{padding:clamp(60px,8vw,104px) 0}
+
+/* Encabezado de sección asimétrico: título a la izquierda, bajada a la
+   derecha, ambas columnas apoyadas abajo sobre una regla de arranque. */
+.sec-head{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:24px 48px;
+  align-items:end;
+  margin-bottom:clamp(34px,5vw,56px);
+  padding-top:20px;
+  border-top:3px solid currentColor;
+}
+
+.sec-head.full{grid-template-columns:1fr}
+
+.sec-head h2{
+  font-size:clamp(1.85rem,4.2vw,3.1rem);
+}
+
+.sec-head p{
+  color:var(--tinta-suave);
+  font-size:1.04rem;
+  line-height:1.55;
+  padding-bottom:6px;
+}
+
+/* --- Footer ------------------------------------------------------------- */
+footer{
+  background:var(--tinta);
+  color:#D9C2AE;
+  padding:0 0 28px;
+  position:relative;
+}
+
+/* Toldo de cierre: el mismo filo de carpa que el header */
+footer::before{
+  content:"";
+  display:block;
+  height:10px;
+  background:var(--toldo);
+}
+
+footer .wrap{padding-top:52px}
+
+/* Wordmark gigante: tipografía como gráfico */
+.foot-word{
+  font-family:var(--fuente-titulo);
+  text-transform:uppercase;
+  font-size:clamp(3rem,12.5vw,8.5rem);
+  line-height:.95;
+  color:var(--dorado);
+  margin-bottom:40px;
+  overflow:hidden;
+}
+
+@supports (-webkit-text-stroke:2px #000){
+  .foot-word{
+    color:transparent;
+    -webkit-text-stroke:2px var(--dorado);
+  }
+}
+
+.foot-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr;
+  gap:36px;
+  padding-top:34px;
+  border-top:2px dashed rgba(247,179,43,.4);
+  margin-bottom:34px;
+}
+
+.foot-grid h4{
+  color:var(--crema);
+  font-size:.82rem;
+  letter-spacing:.1em;
+  margin-bottom:14px;
+}
+
+.foot-grid a{
+  display:block;
+  padding:5px 0;
+  transition:color .18s,transform .18s;
+}
+
+.foot-grid a:hover{color:var(--dorado-texto);transform:translateX(4px)}
+
+.foot-grid p{font-size:.98rem}
+
+.legal{
+  border-top:1px solid rgba(255,255,255,.14);
+  padding-top:22px;
+  text-align:center;
+  font-size:.85rem;
+}
+
+/* --- Botón flotante de WhatsApp ------------------------------------------ */
+.float-wa,
+.float-pedir{
+  position:fixed;
+  right:20px;
+  z-index:60;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  box-shadow:4px 4px 0 var(--tinta);
+  transition:transform .15s,box-shadow .15s;
+}
+
+.float-wa{
+  bottom:20px;
+  background:var(--verde);
+  color:#fff;
+}
+
+.float-pedir{
+  bottom:88px;  /* encima del WhatsApp */
+  background:var(--naranja-texto);
+  color:#fff;
+}
+
+.float-wa:hover,
+.float-pedir:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--tinta)}
+
+.float-wa:active,
+.float-pedir:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--tinta)}
+
+.float-wa svg,
+.float-pedir svg{
+  width:26px;
+  height:26px;
+  fill:currentColor;
+}

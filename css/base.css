@@ -1,0 +1,137 @@
+/* ==========================================================================
+   base.css — reset, tipografía base y utilidades transversales
+   Se carga primero. No contiene nada específico de una sección en particular.
+
+   Identidad visual: carpa de feria / chapa de barrio.
+   - Toldo a rayas (naranja/crema) como filo del header y del footer.
+   - Tarjetas = papel pegado: borde sólido + sombra dura desplazada.
+   - Tipografía: Alfa Slab One (cartel de feria) + Archivo (cuerpo).
+   ========================================================================== */
+
+/* --- Design tokens -------------------------------------------------------
+   Paleta y métricas del proyecto. Cambiar un color o un radio de acá
+   impacta todo el sitio; nunca hardcodear valores que existan como token.
+   Los valores de color los valida tools/verificar.js (no cambiar).
+   ------------------------------------------------------------------------ */
+:root{
+  /* Naranja de marca: para bordes, fondos y botones. Sobre blanco o crema
+     no usarlo como color de texto (queda en 4.04:1, falla AA). Para texto
+     usá --naranja-texto. */
+  --naranja:#E8410F;
+  --naranja-claro:#FF6B2C;
+  /* Versión oscura, apta para texto sobre blanco (5.4:1) */
+  --naranja-texto:#C0340A;
+  /* Fondo del hero: oscurecido para que el texto blanco alcance 5.1:1 */
+  --naranja-fondo:#C93C0D;
+  --dorado-texto:#FFC93C;   /* dorado legible sobre el naranja del hero */
+
+  --crema:#FFF6EC;
+  --crema-oscuro:#F5E4D0;
+  --tinta:#2A1508;
+  --tinta-suave:#6B4A32;
+  --verde:#1F7A4D;
+  --dorado:#F7B32B;
+
+  /* Sombras duras: papel/chapa pegado, nunca difusas */
+  --sombra:5px 5px 0 rgba(42,21,8,.18);
+  --sombra-alta:8px 8px 0 rgba(42,21,8,.22);
+  --sombra-naranja:6px 6px 0 var(--naranja);
+  --borde:2px solid var(--tinta);
+
+  /* Toldo de carpa: franjas diagonales naranja/crema */
+  --toldo:repeating-linear-gradient(45deg,var(--naranja) 0 12px,var(--crema) 12px 24px);
+  /* Franja de cierre (hero -> barra de estado): tinta y oro */
+  --toldo-noche:repeating-linear-gradient(45deg,var(--dorado) 0 12px,var(--tinta) 12px 24px);
+
+  --radio:6px;        /* esquinas de papel */
+  --radio-chico:4px;
+  --max:1120px;
+
+  --fuente-titulo:'Alfa Slab One',Rockwell,'Bookman Old Style',Georgia,serif;
+  --fuente-cuerpo:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+
+  --header-alto:70px;
+  --scroll-offset:94px;   /* deja el header sticky fuera del ancla */
+}
+
+/* --- Reset -------------------------------------------------------------- */
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+
+/* Scroll suave sólo para quien no pida menos movimiento */
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+}
+
+html{scroll-padding-top:var(--scroll-offset)}
+
+body{
+  font-family:var(--fuente-cuerpo);
+  color:var(--tinta);
+  background:var(--crema);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+
+/* --- Tipografía --------------------------------------------------------- */
+h1,h2,h3,h4{
+  font-family:var(--fuente-titulo);
+  font-weight:400;
+  text-transform:uppercase;
+  line-height:1.02;
+  letter-spacing:.005em;
+}
+
+p{max-width:72ch}
+
+/* --- Accesibilidad ------------------------------------------------------ */
+.skip{
+  position:absolute;
+  left:14px;
+  top:-70px;
+  z-index:100;
+  background:var(--tinta);
+  color:var(--crema);
+  padding:11px 18px;
+  border-radius:var(--radio-chico);
+  font-weight:600;
+  transition:top .18s;
+}
+.skip:focus{top:14px}
+
+/* Anillo de foco visible en fondos claros */
+:focus-visible{
+  outline:3px solid var(--naranja-texto);
+  outline-offset:2px;
+  border-radius:2px;
+}
+
+/* ...y en fondos oscuros o naranja, el dorado se ve en ambos lados */
+.alt :focus-visible,
+.hero :focus-visible,
+.statusbar :focus-visible,
+footer :focus-visible,
+.info-card :focus-visible{
+  outline-color:var(--dorado);
+}
+
+::selection{background:var(--dorado);color:var(--tinta)}
+
+/* --- Utilidades --------------------------------------------------------- */
+.wrap{
+  max-width:var(--max);
+  margin-inline:auto;
+  padding-inline:20px;
+}
+
+/* Variante de sección con fondo oscuro (noche de feria).
+   OJO: .alt cambia el color de texto a crema. Cualquier tarjeta de fondo
+   claro que se ponga DENTRO de una .alt debe resetear el color a --tinta
+   (ver .item y .social-card en components.css), o el texto queda crema
+   sobre blanco: 1.07:1, ilegible. */
+.alt{background:var(--tinta);color:var(--crema)}
+.alt .sec-head p{color:#D9C2AE}

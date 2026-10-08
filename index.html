@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ======================================================================
+     META / SEO
+     Editá el título y la descripción acá. Los datos estructurados los
+     genera js/seo.js a partir de js/data.js.
+     ====================================================================== -->
+<title>Panchievo · Panchos y hamburguesas en Dock Sud</title>
+<meta name="description" content="Panchievo: panchos completos, hamburguesas, tequeños y milanesas al panko en Nicolás Avellaneda 1996, Dock Sud. Retos virales, delivery y comida de barrio a precio justo.">
+<meta name="theme-color" content="#E8410F">
+
+<meta property="og:type" content="restaurant">
+<meta property="og:site_name" content="Panchievo">
+<meta property="og:title" content="Panchievo · El pancho que no te deja en paz">
+<meta property="og:description" content="Panchos completos, hamburguesas generosas y retos virales en Dock Sud, Avellaneda.">
+<meta property="og:locale" content="es_AR">
+<meta property="og:image" content="assets/img/local-panchievo.jpg">
+
+<!-- Relleno por js/seo.js. Si lo borrás, el sitio pierde el rich snippet. -->
+<script id="ld-restaurant" type="application/ld+json"></script>
+
+<!-- ======================================================================
+     CSS — el orden importa: tokens -> layout -> componentes -> responsive
+     Tipografía: Alfa Slab One (títulos, cartel de feria) + Archivo (cuerpo)
+     ====================================================================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<!-- ======================================================================
+     HEADER — el nav se completa desde js/data.js vía js/main.js
+     ====================================================================== -->
+<header>
+  <div class="wrap bar">
+    <a href="#top" class="logo">Panchievo <span>Dock Sud</span></a>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
+      <svg class="burger-ico" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="6" width="18" height="2.4" rx="1.2"/>
+        <rect x="3" y="10.8" width="18" height="2.4" rx="1.2"/>
+        <rect x="3" y="15.6" width="18" height="2.4" rx="1.2"/>
+      </svg>
+    </button>
+    <nav id="nav"></nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <!-- ====================================================================
+       HERO — toldo de carpa + titular gigante + foto pegada con sello
+       Foto y rating van por data-txt / data-src: los completa main.js.
+       ==================================================================== -->
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="chapa">
+          <svg class="ico-pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+          Nicolás Avellaneda 1996 · Dock Sud
+        </p>
+        <h1><span class="l1">El pancho que</span><em class="l2">no te deja en paz</em></h1>
+        <p class="lead">
+          Panchos completos, hamburguesas que se desbordan, tequeños crocantes y milanesas al panko.
+          Venís a comer, te animás a un reto y te vas con la panza llena y una historia para contar.
+        </p>
+        <div class="hero-actions">
+          <a href="https://menu.fu.do/panchievo" data-href="{{menuOnline}}" target="_blank" rel="noopener" class="cta">Pedí ahora</a>
+          <a href="#retos" class="cta ghost">¿Qué son los retos?</a>
+        </div>
+      </div>
+      <figure class="hero-figure">
+        <img data-src="{{imagenPrincipal}}" alt="El local de Panchievo en Nicolás Avellaneda 1996, Dock Sud" width="1440" height="1041" loading="eager">
+        <div class="rating">
+          <b data-txt="{{ratingValor}}">9.6</b>
+          <span class="rating-txt">
+            <svg class="ico-star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7z"/></svg>
+            <small>en <span data-txt="{{ratingCantidad}}">50</span> reseñas</small>
+          </span>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       BARRA DE ESTADO — píldora de estado en vivo + marquesina de datos
+       El punto verde/rojo y el texto los escribe js/horarios.js.
+       ==================================================================== -->
+  <div class="statusbar">
+    <div class="wrap status-inner">
+      <span id="status" class="estado"><span class="dot"></span><span id="statusText">Consultando horarios…</span></span>
+      <a class="tel" data-href="{{telLink}}" data-txt="{{tel}}">teléfono</a>
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <span class="ticker-set">Nicolás Avellaneda 1996 · Dock Sud · Panchos y hamburguesas · Retos en vivo · Delivery y para llevar ·</span>
+          <span class="ticker-set">Nicolás Avellaneda 1996 · Dock Sud · Panchos y hamburguesas · Retos en vivo · Delivery y para llevar ·</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       STATS
+       ==================================================================== -->
+  <div class="stats">
+    <div class="wrap stats-grid">
+      <div class="stat"><b data-txt="{{anioApertura}}">2024</b><span>Apertura en Dock Sud</span></div>
+      <div class="stat"><b data-txt="{{videosPorDia}}">10</b><span>Videos por día</span></div>
+      <div class="stat"><b data-txt="{{chicosEnRetos}}">20+</b><span>Chicos en los retos</span></div>
+      <div class="stat"><b data-txt="{{ratingValor}}">9.6</b><span>Puntaje en reseñas</span></div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       RETOS — secuencia real (llegar, animarse, ganar): lista ordenada
+       ==================================================================== -->
+  <section id="retos">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Cómo funciona Bailando por un Pancho</h2>
+        <p>La comida va con humor. Lo que empezó como una idea para vender más se volvió un punto de
+           encuentro del barrio y un lugar donde los pibes se animan a hacer cosas que frente a otros
+           no se atreven.</p>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <span class="num" aria-hidden="true">1</span>
+          <h3>Llegá</h3>
+          <p>Pasá por Nicolás Avellaneda 1996 con ganas de divertirte (y de comer).</p>
+        </li>
+        <li class="step">
+          <span class="num" aria-hidden="true">2</span>
+          <h3>Animate</h3>
+          <p>Bailá, cantá o hacé reír a todos. No tiene que ser un baile: también hay piedra, papel o
+             tijera, carreras y challenges de armar la hamburguesa más rápido.</p>
+        </li>
+        <li class="step">
+          <span class="num" aria-hidden="true">3</span>
+          <h3>Ganá</h3>
+          <p>El premio es un pancho bien armado. Lo comés, lo subís y arrasás en redes.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       CARTA
+       SIN PRECIOS a propósito: menu.fu.do es una SPA con API autenticada
+       que no se puede leer. Cuando el dueño pase los precios, agregar
+       un span con clase precio dentro de cada item.
+       ==================================================================== -->
+  <section id="carta" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Lo que más piden los fans de la casa</h2>
+        <p>Cantidad y precio. Por lo que cuesta una hamburguesa doble en una cadena, acá te llevás una
+           promo de dos dobles con papas de verdad.</p>
+      </div>
+      <ul class="menu-grid">
+        <li class="item">
+          <h3>El Clásico</h3>
+          <p>Pancho con salchicha, pan fresco y todos los aderezos que quieras.</p>
+        </li>
+        <li class="item">
+          <h3>El Panchievo</h3>
+          <p>El de la casa: cargado, generoso y sin culpa. El estrella del local.</p>
+        </li>
+        <li class="item">
+          <h3>Hamburguesas</h3>
+          <p>Simple, doble o triple: carne jugosa en su punto, queso y pan blandito que aguanta el
+             contenido sin deshacerse.</p>
+        </li>
+        <li class="item">
+          <h3>Papas y combos</h3>
+          <p>Para compartir: papas fritas bien crocantes y combos con papas y gaseosa. Ideales para ir
+             en grupo.</p>
+        </li>
+        <li class="item">
+          <h3>Tequeños</h3>
+          <p>Para picar: crocantes por fuera, cremosos por dentro. Tienen público fiel.</p>
+        </li>
+        <li class="item">
+          <h3>Milanesas al panko</h3>
+          <p>Rebozo generoso: súper crocantes, al sándwich o al plato. Con papas, no te podés levantar.</p>
+        </li>
+      </ul>
+      <div class="menu-cta">
+        <a data-href="{{menuOnline}}" target="_blank" rel="noopener" class="cta">Ver precios y pedir</a>
+        <p class="nota">Los precios y disponibilidad se confirman en el menú online oficial.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       PEDÍ ACÁ — sección de pedido online
+       Los datos del menú (productos, precios, fotos) están en menu.fu.do,
+       que es una SPA con API autenticada y no se puede leer. Esta sección
+        muestra cupones con estilo y un CTA directo.
+       ==================================================================== -->
+  <section id="pedir">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>¡Pedí tu Panchi y retiralo o que te lo lleven!</h2>
+        <p>Entrá al menú oficial, elegí tus combos y pagá desde el celu. Todo listo para cuando llegues.</p>
+      </div>
+
+      <div class="pedir-grid">
+        <!-- Vista previa de coupons (placeholders — TODO: datos reales del menú) -->
+        <div class="cromo" data-todo="cromo-1">
+          <div class="cromo-body">
+            <span class="cromo-tag">Promo</span>
+            <h3>Pancho Clásico + Papas + Gaseosa</h3>
+            <p>El combo que nunca falla. Salchicha, pan fresco, todos los aderezos.</p>
+            <span class="cromo-precio">Ver precio en menú</span>
+          </div>
+        </div>
+        <div class="cromo" data-todo="cromo-2">
+          <div class="cromo-body">
+            <span class="cromo-tag">Nuevo</span>
+            <h3>Hamburguesa Doble Panchievo</h3>
+            <p>Doble carne, doble queso, panceta y salsa de la casa. Para valientes.</p>
+            <span class="cromo-precio">Ver precio en menú</span>
+          </div>
+        </div>
+        <div class="cromo" data-todo="cromo-3">
+          <div class="cromo-body">
+            <span class="cromo-tag">Promo</span>
+            <h3>Tequeños x6 + Dip de queso</h3>
+            <p>Crocantes por fuera, cremosos por dentro. Ideales para compartir.</p>
+            <span class="cromo-precio">Ver precio en menú</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pedir-cta">
+        <div class="pedir-horario">
+          <svg class="ico-reloj" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>Horario de comidas: <strong>Mié y jue 20:00 - 24:00</strong> · <strong>Vie y sáb 20:00 - 02:00</strong> · <strong>Martes cerrado</strong> · <strong>Dom y lun por confirmar</strong></span>
+        </div>
+        <a data-href="{{menuPedido}}" target="_blank" rel="noopener noreferrer" class="cta cta-pedir">
+          <svg class="ico-carrito" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm10 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM1 2h4l2.7 11.4a2 2 0 0 0 2 1.6h9.6a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+          Ver menú y pedir
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       HORARIOS — cartelera de noche: servicios en placa dorada +
+       tabla dibujada por js/horarios.js desde js/data.js.
+       ==================================================================== -->
+  <section id="horarios" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Horarios y servicios</h2>
+        <p>Ojo con dos cortes: el <strong>martes a la noche</strong> el local está cerrado y el
+           <strong>sábado al mediodía</strong> también. Son las dos franjas que más confunden.</p>
+      </div>
+      <div class="hor-wrap">
+        <div class="info-card">
+          <h3>Servicios</h3>
+          <ul>
+            <li><div><strong>Comer en el local</strong>Dine in con mesa compartida en hora pico</div></li>
+            <li><div><strong>Para llevar</strong>Takeaway y pedidos anticipados</div></li>
+            <li><div><strong>Delivery</strong>Tiempos de espera razonables, también a la oficina</div></li>
+            <li><div><strong>Carta completa online</strong>Precios vigentes y pedidos</div></li>
+          </ul>
+        </div>
+        <div class="hor-list" id="horList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       MAPA
+       El iframe embebido y el link "Cómo llegar" se arman desde js/data.js.
+       Se usa el embed clásico output=embed porque la API oficial
+       (maps/embed/v1) exige clave y no aplica para este proyecto.
+       ==================================================================== -->
+  <section id="mapa">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Encontranos en el corazón de Dock Sud</h2>
+        <p>A dos cuadras para Avellaneda, Sarandí y Wilde. Ideal para llegar en auto o moto.</p>
+      </div>
+      <div class="map-grid">
+        <iframe data-src="{{mapaEmbed}}" title="Mapa de la ubicación de Panchievo en Nicolás Avellaneda 1996, Dock Sud" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-side">
+          <h3>Panchievo</h3>
+          <p class="addr" data-txt="{{direccionCompleta}}">dirección</p>
+          <p class="zone">Zona de Avellaneda, Sarandí y Wilde</p>
+          <div class="map-actions">
+            <a data-href="{{gmaps}}" target="_blank" rel="noopener">
+              <span class="map-ico">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+              </span>
+              Cómo llegar
+            </a>
+            <a data-href="{{telLink}}">
+              <span class="map-ico tel">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.25 1l-2.23 2.2z"/></svg>
+              </span>
+              Llamar al local
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       REDES / COLABORACIONES
+       ==================================================================== -->
+  <section id="colabs" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Panchievo se volvió punto de encuentro de creadores</h2>
+        <p>Si sos creador de contenido o representás una marca, escribinos con tu usuario y tu idea.
+           Buscamos gente que quiera pasar por el mostrador.</p>
+      </div>
+      <!-- Íconos: SVG inline con la marca de cada red. Se eligieron SVG en vez de
+           emoji porque los emoji se veían distintos según el sistema operativo
+           y descuadraban la fila. -->
+      <div class="social-grid">
+        <a class="social-card" data-href="{{instagram}}" target="_blank" rel="noopener">
+          <div class="ico ig">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.42.6.22 1 .48 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.07-1.1.05-1.7.24-2.1.4-.5.2-.9.4-1.2.8-.4.3-.6.7-.8 1.2-.2.4-.3 1-.4 2.1C2.7 9.8 2.7 10.2 2.7 12s0 2.2.1 3.4c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.2.3.4.7.6 1.2.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.2-.8.4-.3.6-.7.8-1.2.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-3.4s0-2.2-.1-3.4c-.1-1.1-.2-1.7-.4-2.1a3.2 3.2 0 0 0-.8-1.2 3.2 3.2 0 0 0-1.2-.8c-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.1a5 5 0 1 1 0 9.9 5 5 0 0 1 0-9.9zm0 8.1a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.3-8.3a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+          </div>
+          <h3>Instagram</h3>
+          <p class="user">@panchievo</p>
+          <p>Videos de los retos, el día a día del local y los anuncios.</p>
+          <span class="go">Seguir</span>
+        </a>
+        <a class="social-card" data-href="{{tiktok}}" target="_blank" rel="noopener">
+          <div class="ico tt">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 5.8a4.8 4.8 0 0 1-1.1-3.1h-3.2v12.4a2.6 2.6 0 1 1-1.9-2.5V9.4a5.9 5.9 0 1 0 5.1 5.8V9.2a7.8 7.8 0 0 0 4.5 1.4V7.4a4.7 4.7 0 0 1-3.4-1.6z"/></svg>
+          </div>
+          <h3>TikTok</h3>
+          <p class="user">@panchievo</p>
+          <p>Donde nacieron los retos virales y las coreografías del barrio.</p>
+          <span class="go">Seguir</span>
+        </a>
+        <a class="social-card" data-href="{{facebook}}" target="_blank" rel="noopener">
+          <div class="ico fb">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
+          </div>
+          <h3>Facebook</h3>
+          <p class="user">Panchievo</p>
+          <p>Novedades, horarios y contacto directo con el local.</p>
+          <span class="go">Abrir</span>
+        </a>
+      </div>
+
+      <div class="colab-band">
+        <div>
+          <h3>Un pancho que ayuda</h3>
+          <p>Los que participan en los retos pueden traer un alimento no perecedero y los vecinos suman
+             también. Lo juntado se entrega a un comedor o se usa para una olla popular. Es un ida y vuelta:
+             vos hacés reír, el barrio se ayuda.</p>
+        </div>
+        <a data-href="{{instagram}}" target="_blank" rel="noopener" class="cta">Quiero sumarme</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       FAQ — acordeón nativo, sin JS
+       ==================================================================== -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head full">
+        <h2>Todo lo que preguntan por mensaje</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>¿Qué es “Bailando por un Pancho”?</summary>
+          <p>Un reto viral: bailás o hacés una prueba divertida frente a la cámara y ganás un pancho.
+             No tiene que ser un baile: también hay piedra, papel o tijera, carreras o ver quién
+             envuelve la hamburguesa más rápido. La idea es divertirse.</p>
+        </details>
+        <details>
+          <summary>¿Cómo participo?</summary>
+          <p>Escribinos por Instagram o TikTok (@panchievo) o vení directo al local, en Nicolás
+             Avellaneda 1996. No hace falta reservar.</p>
+        </details>
+        <details>
+          <summary>¿A qué hora abren?</summary>
+          <p>Para <strong>comer</strong>: miércoles y jueves de 20:00 a 24:00, viernes y sábado de 20:00 a 02:00.
+             El martes está <strong>cerrado todo el día</strong>. Domingo y lunes por confirmar.
+          <br>Para <strong>grabar retos</strong>: miércoles a sábado de 16:00 a 19:00.
+          <br>La barra de arriba te dice si están abiertos en este momento.</p>
+        </details>
+        <details>
+          <summary>¿Cuánto sale?</summary>
+          <p>Depende del producto y de las promos vigentes. La opción más segura es mirar el
+             <a data-href="{{menuOnline}}" target="_blank" rel="noopener">menú online oficial</a>,
+             que está siempre actualizado.</p>
+        </details>
+        <details>
+          <summary>¿Tengo que llevar algo?</summary>
+          <p>Si querés sumar, podés traer un alimento no perecedero. Es una forma de ayudar al barrio y
+             sigue activo en cada reto.</p>
+        </details>
+        <details>
+          <summary>¿Hacen delivery?</summary>
+          <p>Sí. También podés comer en el local o retirar. Los tiempos de delivery son razonables,
+             incluso para pedidos a la oficina.</p>
+        </details>
+        <details>
+          <summary>Soy creador de contenido, ¿puedo colaborar?</summary>
+          <p>Sí. Escribinos por mensaje con tu usuario y tu idea.</p>
+        </details>
+        <details>
+          <summary>Soy una marca, ¿puedo sumarme?</summary>
+          <p>Sí. Panchievo busca marcas que aporten panchos o materia prima para seguir con los videos.
+             Escribinos y lo charlamos.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ======================================================================
+     FOOTER
+     ====================================================================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-word" aria-hidden="true">Panchievo</div>
+    <div class="foot-grid">
+      <div>
+        <p>Panchos, hamburguesas y mucha locura. Desde 2024 en el viejo taller de electricidad del abuelo
+           de Iván, hoy un punto de encuentro de Dock Sud.</p>
+      </div>
+      <div>
+        <h4>Navegá</h4>
+        <a href="#retos">Retos</a>
+        <a href="#carta">Carta</a>
+        <a href="#horarios">Horarios</a>
+        <a href="#mapa">Dónde estamos</a>
+        <a href="#colabs">Colaboraciones</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a data-href="{{telLink}}" data-txt="{{tel}}">teléfono</a>
+        <a data-href="{{menuOnline}}" target="_blank" rel="noopener">Menú online</a>
+        <a data-href="{{instagram}}" target="_blank" rel="noopener">Instagram</a>
+        <a data-href="{{tiktok}}" target="_blank" rel="noopener">TikTok</a>
+        <a data-href="{{facebook}}" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+    <div class="legal">© <span id="anio">2026</span> Panchievo · Dock Sud, Avellaneda · Hecho con mucho humor</div>
+  </div>
+</footer>
+
+<a class="float-wa" data-href="{{waLink}}" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 3C6.9 3 2.8 6.6 2.8 11c0 2.3 1.2 4.4 3.1 5.8l-.7 3.2 3.5-1.1c1 .3 2.1.5 3.3.5 5.1 0 9.2-3.6 9.2-8.4S17.1 3 12 3zm-3.1 6.6a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4zm3.1 0a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4zm3.1 0a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg>
+</a>
+<a class="float-pedir" data-href="{{menuPedido}}" target="_blank" rel="noopener noreferrer" aria-label="Ver menú y pedir online">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm10 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM1 2h4l2.7 11.4a2 2 0 0 0 2 1.6h9.6a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+</a>
+
+<!-- ======================================================================
+     JS — el orden importa: data -> módulos -> main
+     ====================================================================== -->
+<script src="js/data.js"></script>
+<script src="js/horarios.js"></script>
+<script src="js/seo.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
